@@ -1,28 +1,30 @@
 name: HTTP App workflow
+
 on:
   push:
     branches:
-      - main 
+      - main
       - master
       - "feature/**"
-  # pull_request:
-  #   branches:
-  #     - main
+
 jobs:
-  test and build:
-    runs_on: ubuntu-latest
+  test_and_build:
+    runs-on: ubuntu-latest
+
     steps:
-      - name: clone code
+      - name: Clone code
         uses: actions/checkout@v5
-      - name: setup node js environment
+
+      - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
           node-version: 24
-      - name: install node packages 
+
+      - name: Install node packages
         run: npm install
 
-      # - name: run test
-      #   run: npm run test
+      # - name: Run tests
+      #   run: npm test
 
-      - name: compile source code
+      - name: Compile source code
         run: npm run build
